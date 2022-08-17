@@ -102,10 +102,20 @@ function addProduct(itemDto) {
      * 1. contentType: "application/json",
      * 2. data: JSON.stringify(itemDto),
      */
-
     // 1. POST /api/products 에 관심 상품 생성 요청
-    // 2. 응답 함수에서 modal을 뜨게 하고, targetId 를 reponse.id 로 설정 (숙제로 myprice 설정하기 위함)
+    $.ajax({
+        type: "POST",
+        url: '/api/products',
+        contentType: "application/json",
+        data: JSON.stringify(itemDto),
+        success: function (response) {
+            // 2. 응답 함수에서 modal을 뜨게 하고, targetId 를 reponse.id 로 설정 (숙제로 myprice 설정하기 위함)
+            $('#container').addClass('active');
+            targetId = response.id;
+        }
+    })
 }
+
 
 function showProduct() {
     /**
